@@ -1,0 +1,57 @@
+package:
+  name: ros-galactic-rqt-common-plugins
+  version: 1.1.0
+source:
+  git_url: https://github.com/ros2-gbp/rqt_common_plugins-release.git
+  git_rev: release/galactic/rqt_common_plugins/1.1.0-2
+  folder: ros-galactic-rqt-common-plugins/src/work
+
+build:
+  script:
+    sel(win): bld_ament_cmake.bat
+    sel(unix): build_ament_cmake.sh
+  number: 0
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+  host:
+    - python
+    - ros-galactic-ament-cmake
+  run:
+    - python
+    - ros-galactic-rqt-action
+    - ros-galactic-rqt-bag
+    - ros-galactic-rqt-bag-plugins
+    - ros-galactic-rqt-console
+    - ros-galactic-rqt-graph
+    - ros-galactic-rqt-image-view
+    - ros-galactic-rqt-msg
+    - ros-galactic-rqt-plot
+    - ros-galactic-rqt-publisher
+    - ros-galactic-rqt-py-common
+    - ros-galactic-rqt-py-console
+    - ros-galactic-rqt-reconfigure
+    - ros-galactic-rqt-service-caller
+    - ros-galactic-rqt-shell
+    - ros-galactic-rqt-srv
+    - ros-galactic-rqt-top
+    - ros-galactic-rqt-topic
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}

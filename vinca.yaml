@@ -1,0 +1,34 @@
+ros_distro: galactic
+
+# mapping for package keys
+conda_index:
+  - robostack.yaml
+  - packages-ignore.yaml
+
+build_number: 0
+
+skip_all_deps: false
+
+build_in_own_azure_stage:
+  - ros-galactic-rviz-rendering
+
+packages_skip_by_deps:
+  -  rttest
+
+packages_remove_from_deps:
+  - tlsf
+  - tlsf_cpp
+  - pendulum_control
+
+skip_existing:
+  - https://conda.anaconda.org/robostack-experimental/
+
+packages_select_by_deps:
+  # - zstd_vendor
+  # - rqt_bag_plugins
+  - desktop
+  # - rviz2
+  # - ros_core
+  # - ros_workspace
+
+patch_dir: patch

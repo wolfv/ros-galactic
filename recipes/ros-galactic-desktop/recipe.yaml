@@ -1,0 +1,85 @@
+package:
+  name: ros-galactic-desktop
+  version: 0.9.3
+source:
+  git_url: https://github.com/ros2-gbp/variants-release.git
+  git_rev: release/galactic/desktop/0.9.3-2
+  folder: ros-galactic-desktop/src/work
+
+build:
+  script:
+    sel(win): bld_ament_cmake.bat
+    sel(unix): build_ament_cmake.sh
+  number: 0
+about:
+  home: https://www.ros.org/
+  license: BSD-3-Clause
+  summary: |
+    Robot Operating System
+
+extra:
+  recipe-maintainers:
+    - ros-forge
+
+requirements:
+  build:
+    - "{{ compiler('cxx') }}"
+    - "{{ compiler('c') }}"
+    - ninja
+    - sel(unix): make
+    - sel(osx): tapi
+    - cmake
+    - sel(build_platform != target_platform): python
+    - sel(build_platform != target_platform): cross-python_{{ target_platform }}
+    - sel(build_platform != target_platform): cython
+  host:
+    - python
+    - ros-galactic-ament-cmake
+  run:
+    - python
+    - ros-galactic-action-tutorials-cpp
+    - ros-galactic-action-tutorials-interfaces
+    - ros-galactic-action-tutorials-py
+    - ros-galactic-angles
+    - ros-galactic-composition
+    - ros-galactic-demo-nodes-cpp
+    - ros-galactic-demo-nodes-cpp-native
+    - ros-galactic-demo-nodes-py
+    - ros-galactic-depthimage-to-laserscan
+    - ros-galactic-dummy-map-server
+    - ros-galactic-dummy-robot-bringup
+    - ros-galactic-dummy-sensors
+    - ros-galactic-examples-rclcpp-minimal-action-client
+    - ros-galactic-examples-rclcpp-minimal-action-server
+    - ros-galactic-examples-rclcpp-minimal-client
+    - ros-galactic-examples-rclcpp-minimal-composition
+    - ros-galactic-examples-rclcpp-minimal-publisher
+    - ros-galactic-examples-rclcpp-minimal-service
+    - ros-galactic-examples-rclcpp-minimal-subscriber
+    - ros-galactic-examples-rclcpp-minimal-timer
+    - ros-galactic-examples-rclcpp-multithreaded-executor
+    - ros-galactic-examples-rclpy-executors
+    - ros-galactic-examples-rclpy-minimal-action-client
+    - ros-galactic-examples-rclpy-minimal-action-server
+    - ros-galactic-examples-rclpy-minimal-client
+    - ros-galactic-examples-rclpy-minimal-publisher
+    - ros-galactic-examples-rclpy-minimal-service
+    - ros-galactic-examples-rclpy-minimal-subscriber
+    - ros-galactic-image-tools
+    - ros-galactic-intra-process-demo
+    - ros-galactic-joy
+    - ros-galactic-lifecycle
+    - ros-galactic-logging-demo
+    - ros-galactic-pcl-conversions
+    - ros-galactic-pendulum-msgs
+    - ros-galactic-quality-of-service-demo-cpp
+    - ros-galactic-quality-of-service-demo-py
+    - ros-galactic-ros-base
+    - ros-galactic-rqt-common-plugins
+    - ros-galactic-rviz-default-plugins
+    - ros-galactic-rviz2
+    - ros-galactic-teleop-twist-joy
+    - ros-galactic-teleop-twist-keyboard
+    - ros-galactic-topic-monitor
+    - ros-galactic-turtlesim
+    - sel(osx and x86_64): __osx >={{ MACOSX_DEPLOYMENT_TARGET|default('10.14') }}
